@@ -1,0 +1,4 @@
+1. folder create (airbnb-clone)
+2. pipenv --three (bubble create)
+3. pipenv shell (inside of the bubble)
+4. pipenv install Django==2.2.5 (install django)
