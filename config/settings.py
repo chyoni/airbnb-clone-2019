@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+PROJECT_APPS = ["users.apps.UsersConfig"]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -112,3 +116,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+""" 
+우리가 새로만들 user는 기존에 장고가 제공해주는 user보다 더 많은것을 필요로 하기 때문에 
+유저를 커스터마이징해야함 그렇기 때문에 우리가 user를 만들어서 그 user가 장고 너가 봐야할 user다 라고 
+말해주는것이 아래 문장
+"""
+AUTH_USER_MODEL = "users.User"
