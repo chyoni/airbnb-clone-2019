@@ -18,10 +18,34 @@ class User(AbstractUser):
         (GENDER_OTHER, "Other"),
     )
 
+    LANGUAGE_ENGLISH = "en"
+    LANGUAGE_KOREAN = "kr"
+
+    LANGUAGE_CHOICES = (
+        (LANGUAGE_ENGLISH, "English"),
+        (LANGUAGE_KOREAN, "Korean"),
+    )
+
+    CURRENCY_USD = "usd"
+    CURRENCY_KRW = "krw"
+
+    CURRENCY_CHOICES = (
+        (CURRENCY_USD, "USD"),
+        (CURRENCY_KRW, "KRW"),
+    )
+
     avatar = models.ImageField(null=True, blank=True)
     # CharField 는 글자수 제한에 창 하나 TextField는 Textarea 같은거
     gender = models.CharField(
         choices=GENDER_CHOICES, max_length=10, null=True, blank=True
     )
     bio = models.TextField(default="", blank=True)
+    birthdate = models.DateField(null=True)
+    language = models.CharField(
+        choices=LANGUAGE_CHOICES, max_length=2, null=True, blank=True
+    )
+    currency = models.CharField(
+        choices=CURRENCY_CHOICES, null=True, blank=True, max_length=3
+    )
+    superhost = models.BooleanField(default=False)
 
