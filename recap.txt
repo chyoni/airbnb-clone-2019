@@ -2,3 +2,10 @@
 2. pipenv --three (bubble create)
 3. pipenv shell (inside of the bubble)
 4. pipenv install Django==2.2.5 (install django)
+5. git repo create (inside of github homepage)
+6. git init 
+7. git remote add origin gitRepoURL
+8. git add .
+9. git commit -m "Title"
+10. git push origin master 
+11. django-admin startproject config 
