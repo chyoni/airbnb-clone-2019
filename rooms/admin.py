@@ -7,6 +7,14 @@ class ItemAdmin(admin.ModelAdmin):
 
     """ Item Admin Definition """
 
+    list_display = (
+        "name",
+        "used_by",
+    )
+
+    def used_by(self, obj):
+        return obj.rooms.count()
+
     pass
 
 
@@ -38,7 +46,12 @@ class RoomAdmin(admin.ModelAdmin):
         "description",
         "country",
         "city",
+        "count_amenities",
+        "count_photos",
+        "total_rating",
     )
+
+    ordering = ("id",)
 
     list_filter = (
         "instant_book",
@@ -58,6 +71,13 @@ class RoomAdmin(admin.ModelAdmin):
         "facilities",
         "house_rules",
     )
+
+    # self는 RoomAdmin 클래스를 의미 obj는 행을 의미
+    def count_amenities(self, obj):
+        return obj.amenities.count()
+
+    def count_photos(self, obj):
+        return obj.photos.count()
 
 
 @admin.register(models.Photo)
