@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 ]
+
+# debug 가 true 라는것은 development 환경일때를 의미
+# 즉 개발환경에서는 사진들을 저장한 폴더에 접근할 수 있게 해준다는 것임
+# 실제 프로덕트 환경 즉, 서버 환경에서는 절때 서버에 존재하는 폴더에 접근하게 해주면 안됨
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

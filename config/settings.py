@@ -133,3 +133,7 @@ STATIC_URL = "/static/"
 말해주는것이 아래 문장
 """
 AUTH_USER_MODEL = "users.User"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+
+MEDIA_URL = "/media/"
