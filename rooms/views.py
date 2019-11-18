@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from datetime import datetime
+from rooms import models as room_models
 
 # Create your views here.
 
 
 def all_rooms(request):
 
-    now = datetime.now()
-    hungry = True
+    all_rooms = room_models.Room.objects.all()
 
-    return render(request, "all_rooms.html", context={"now": now, "hungry": hungry})
+    return render(request, "rooms/home.html", context={"rooms": all_rooms})
