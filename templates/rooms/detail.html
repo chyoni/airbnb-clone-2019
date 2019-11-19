@@ -9,6 +9,42 @@
 
 
 {% block content %}
-<h1>{{room.name}}</h1>
-<h3>{{room.description}}</h3>
+
+<div>
+  <h1>{{room.name}}</h1>
+  <h3>{{room.description}}</h3>
+</div>
+
+<div>
+  <h3>
+  {{room.host.username}} 
+  {% if room.host.superhost %}
+    ✅ SH ✅
+  {% endif %}
+  </h3>
+</div>
+
+<div>
+  <h4>Amenities</h4>
+  {% for a in room.amenities.all %}
+    <ul>
+      <li>{{a}}</li>
+    </ul>
+  {% endfor %}
+
+    <h4>Facilities</h4>
+  {% for f in room.facilities.all %}
+    <ul>
+      <li>{{f}}</li>
+    </ul>
+  {% endfor %}
+
+    <h4>House Rules</h4>
+  {% for h in room.house_rules.all %}
+    <ul>
+      <li>{{h}}</li>
+    </ul>
+  {% endfor %}
+</div>
+
 {% endblock content %}
