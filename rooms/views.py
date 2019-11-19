@@ -1,6 +1,4 @@
-from django.views.generic import ListView
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from . import models
 
@@ -26,15 +24,10 @@ class HomeView(ListView):
         return context
 
 
-def room_detail(request, pk):
+class RoomDetail(DetailView):
 
-    try:
+    model = models.Room
 
-        room = models.Room.objects.get(pk=pk)
-
-        return render(request, "rooms/detail.html", {"room": room})
-
-    except models.Room.DoesNotExist:
-
-        return redirect(reverse("core:home"))
+    # 이거 안해도 DetailView 는 기본으로 argument를 pk로 받음
+    pk_url_kwarg = "pk"
 
