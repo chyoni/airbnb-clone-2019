@@ -6,7 +6,24 @@
 
 {% block content %}
 
-{% for room in rooms %}
+
+
+{% for room in contacts.object_list %}
+<h2> 💒 {{room}}  💰 ${{room.price}}</h2>
+{% endfor %}
+
+<h5>
+{% if contacts.has_previous %}
+  <a href="?page={{contacts.previous_page_number}}">Prev</a>
+{% endif %}
+
+Page {{contacts.number}} of {{contacts.paginator.num_pages}}
+
+{% if contacts.has_next %}
+  <a href="?page={{contacts.next_page_number}}">Next</a>
+{% endif %}
+</h5>
+{% comment %} {% for room in rooms %}
   <h1>{{room.name}} / ${{room.price}}</h1>
 {% endfor %}
 
@@ -26,6 +43,6 @@
   {% if not page == page_count  %}
     <a href="?page={{page | add:1}}">Next</a>
   {% endif %}
-</span>
+</span> {% endcomment %}
 
 {% endblock content %}
