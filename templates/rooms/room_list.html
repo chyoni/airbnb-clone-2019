@@ -10,8 +10,14 @@
 
 {% block content %}
 
-{% for room in page_obj %}
-<h2> 💒 {{room}}  💰 ${{room.price}}</h2>
+<h4>{{now}}</h4>
+
+{% for room in rooms %}
+
+{% comment %} 
+namespace와 name을 이용해서 url을 편하게 작성할 수 있음 뒤에는 argument를 작성한 것  
+{% endcomment %}
+<h2> <a href="{% url "rooms:detail" room.pk %}">💒 {{room}}  💰 ${{room.price}}</a></h2>
 {% endfor %}
 
 <h5>
