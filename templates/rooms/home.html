@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
+
+
 {% block page_name %}
   Home 
 {% endblock page_name %}
 
+
+
 {% block content %}
-
-
 
 {% for room in contacts.object_list %}
 <h2> 💒 {{room}}  💰 ${{room.price}}</h2>
@@ -23,26 +25,5 @@ Page {{contacts.number}} of {{contacts.paginator.num_pages}}
   <a href="?page={{contacts.next_page_number}}">Next</a>
 {% endif %}
 </h5>
-{% comment %} {% for room in rooms %}
-  <h1>{{room.name}} / ${{room.price}}</h1>
-{% endfor %}
-
-<h3>Page {{page}} of {{page_count}}</h3>
-
-<span>
-{% if page is not 1 %}
-  <a href="?page={{page | add:-1}}">Previous</a>
-{% endif %}
-</span>
-
-{% for page in page_range %}
-<a href="?page={{page}}">{{page}}</a>
-{% endfor %}
-
-<span>
-  {% if not page == page_count  %}
-    <a href="?page={{page | add:1}}">Next</a>
-  {% endif %}
-</span> {% endcomment %}
 
 {% endblock content %}
