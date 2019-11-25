@@ -9,6 +9,7 @@ class ItemAdmin(admin.ModelAdmin):
     """ Item Admin Definition """
 
     list_display = (
+        "pk",
         "name",
         "used_by",
     )
