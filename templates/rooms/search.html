@@ -20,7 +20,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="city">City</label>
             <input 
-            value={{city}} 
+            value="{{city}}" 
             id="city" 
             name="city" 
             placeholder="Search by City" 
@@ -32,7 +32,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
             <select id="country" name="country">
                 {% for country in countries %}
                     <option 
-                    value={{country.code}} 
+                    value="{{country.code}}" 
                     {% if country.code == s_country %}selected{% endif %}
                     >
                     {{country.name}}
@@ -52,7 +52,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
                 </option>
                 {% for rtype in room_types %}
                     <option 
-                    value={{rtype.pk}} 
+                    value="{{rtype.pk}}"
                     {% if s_room_type == rtype.pk %}selected{% endif %}
                     >
                     {{rtype.name}}
@@ -64,7 +64,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="price">Price</label>
             <input 
-            value={{price}} 
+            value="{{price}}" 
             type="number" 
             name="price" 
             id="price" 
@@ -75,7 +75,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="guests">Guests</label>
             <input 
-            value={{guests}} 
+            value="{{guests}}" 
             type="number" 
             name="guests" 
             id="guests" 
@@ -86,7 +86,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="bedrooms">Bedrooms</label>
             <input 
-            value={{bedrooms}} 
+            value="{{bedrooms}}" 
             ype="number" 
             name="bedrooms" 
             id="bedrooms" 
@@ -97,7 +97,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="beds">Beds</label>
             <input 
-            value={{beds}} 
+            value="{{beds}}" 
             type="number" 
             name="beds" 
             id="beds" 
@@ -108,7 +108,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <div>
             <label for="baths">Baths</label>
             <input 
-            value={{baths}} 
+            value="{{baths}}" 
             type="number" 
             name="baths" 
             id="baths" 
@@ -146,7 +146,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
                         id="amenity" 
                         name="amenities" 
                         type="checkbox" 
-                        value={{amenity.pk}}
+                        value="{{amenity.pk}}"
                         {% if amenity.pk|slugify in s_amenities %}checked{% endif %}
                         />
                     </li>
@@ -164,7 +164,7 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
                         id="facility" 
                         name="facilities" 
                         type="checkbox" 
-                        value={{facility.pk}}
+                        value="{{facility.pk}}"
                         {% if facility.pk|slugify in s_facilities %}checked{% endif %}
                         />
                     </li>
@@ -177,5 +177,12 @@ base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 �
         <button>Search</button>
 
     </form>
+
+    <div>
+    <h2>Result for Search</h2>
+        {% for room in rooms %}
+            <h4>{{room.name}}</h4>
+        {% endfor %}
+    </div>
 
 {% endblock content %}
