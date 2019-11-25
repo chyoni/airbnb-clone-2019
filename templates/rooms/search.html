@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Search 
+{% endblock page_title %}
+
+{% comment %}
+base.html 에 search-bar를 넣어놨으니 모든 템플릿에 그 block 이 보일것임 (base.html을 extends를 했다면)
+근데 우리는 이 search 템플릿에서 그것을 보여주고싶지않음 밑에 content block에 이미 있기 때문에 
+그래서 같은 이름의 block을 만들어서 아무것도 안넣으면 보이지 않게 되는 것 
+{% endcomment %}
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <h2>Search !</h2>
+
+    <form method="get" action="{% url "rooms:search" %}">
+        <div>
+            <label for="city">City</label>
+            <input value={{city}} id="city" name="city" placeholder="Search by City" />
+        </div>
+
+        <div>
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                {% for country in countries %}
+                    <option value={{country.code}}>{{country.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="room_type">Room Type</label>
+            <select id="room_type" name="room_type">
+                {% for rtype in room_types %}
+                    <option value={{rtype.id}}>{{rtype.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button>Search</button>
+
+    </form>
+
+{% endblock content %}
