@@ -6,7 +6,7 @@ from . import models
 class SearchForm(forms.Form):
 
     city = forms.CharField(initial="Anywhere", empty_value="Anywhere", required=False)
-    country = CountryField(default="KR").formfield()
+    country = CountryField(default="KR").formfield(required=False)
     room_type = forms.ModelChoiceField(
         required=False, empty_label="Any Kind", queryset=models.RoomType.objects.all()
     )

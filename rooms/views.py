@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from . import forms
 from . import models
 
@@ -36,9 +37,19 @@ class RoomDetail(DetailView):
 
 def search(request):
 
+    city = request.GET.get("city")
+
     country = request.GET.get("country")
 
-    if country:
+    if city is not None and country is None:
+
+        form = forms.SearchForm(request.GET)
+
+        rooms = models.Room.objects.filter(city=city)
+
+        return render(request, "rooms/search.html", {"form": form, "rooms": rooms})
+
+    if country and city:
 
         form = forms.SearchForm(request.GET)
 
@@ -94,7 +105,17 @@ def search(request):
             if len(facilities) > 0:
                 filter_args["facilities__in"] = list(facilities)
 
-            rooms = models.Room.objects.filter(**filter_args).distinct()
+            qs = (
+                models.Room.objects.filter(**filter_args)
+                .order_by("-created")
+                .distinct()
+            )
+
+            paginator = Paginator(qs, 10, orphans=5)
+
+            page = request.GET.get("page", 1)
+
+            rooms = paginator.get_page(page)
 
             return render(request, "rooms/search.html", {"form": form, "rooms": rooms})
     else:
